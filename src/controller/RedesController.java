@@ -19,21 +19,19 @@ public class RedesController {
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer = new BufferedReader(leitor);
 				String linha = buffer.readLine();
-				String nome = null;
+				String nomeAdaptador = null;
 				while (linha != null) {
-					if (linha.contains("Adaptador")) {
-						 nome = linha;
-						 linha = buffer.readLine();
-					} else {
-					if (linha.contains("IPv4")) {
-					System.out.println(nome +" "+linha);
-					linha = buffer.readLine();
-					} else {
+					if(linha.contains("Adaptador")) {
+						nomeAdaptador = linha;
 						linha = buffer.readLine();
-
 					}
-				}
-					
+						if (linha.contains("IPv4")) {
+							String ipv[] = linha.split(":");
+							System.out.println(nomeAdaptador +" "+ ipv[1]);
+							linha = buffer.readLine();
+						linha = buffer.readLine();
+					}
+					linha = buffer.readLine();
 				}
 				buffer.close();
 				leitor.close();
@@ -104,7 +102,7 @@ public class RedesController {
 				while (linha!=null) {
 					if (linha.contains("rtt")) {
 						String vetorMedia[] = linha.split("/");
-						System.out.println(vetorMedia[5]);
+						System.out.println("Média: "+vetorMedia[5]);
 						linha = buffer.readLine();
 					}
 					linha = buffer.readLine();
