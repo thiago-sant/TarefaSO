@@ -56,7 +56,7 @@ public class RedesController {
 						linha = buffer.readLine();
 						if (linha.contains("inet")) {
 							String numero [] = linha.split(" ");
-							System.out.println(roteador[0] + " - "+numero[1]);
+							System.out.println(roteador[0] + " - "+numero[9]);
 							linha = buffer.readLine();
 						}
 					}
@@ -92,6 +92,27 @@ public class RedesController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		if (ping.contains("Linux")) {
+			Process p;
+			try {
+				p = Runtime.getRuntime().exec("ping -4 -c 10 www.uol.com.br");
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				String linha = buffer.readLine();
+				while (linha!=null) {
+					if (linha.contains("rtt")) {
+						String vetorMedia[] = linha.split("/");
+						System.out.println(vetorMedia[5]);
+						linha = buffer.readLine();
+					}
+					linha = buffer.readLine();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		return ping;
 	}
