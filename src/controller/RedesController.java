@@ -56,7 +56,7 @@ public class RedesController {
 						linha = buffer.readLine();
 						if (linha.contains("inet")) {
 							String numero [] = linha.split(" ");
-							System.out.println(roteador + " - "+numero);
+							System.out.println(roteador[0] + " - "+numero[1]);
 							linha = buffer.readLine();
 						}
 					}
