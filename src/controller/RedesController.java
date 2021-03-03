@@ -43,6 +43,29 @@ public class RedesController {
 			}
 			
 		}
+		if (ip.contains("Linux")) {
+			try {
+				Process p = Runtime.getRuntime().exec("ifconfig");
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				String linha = buffer.readLine();
+				while (linha != null) {
+					if (linha.contains("mtu")) {
+						String roteador[] = linha.split(":");
+						linha = buffer.readLine();
+						if (linha.contains("inet")) {
+							String numero [] = linha.split(" ");
+							System.out.println(roteador + " - "+numero);
+							linha = buffer.readLine();
+						}
+					}
+					linha = buffer.readLine();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		return ip;
 	}
 
