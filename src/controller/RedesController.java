@@ -92,7 +92,7 @@ public class RedesController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+		} // fim do windows
 		if (ping.contains("Linux")) {
 			Process p;
 			try {
@@ -113,7 +113,7 @@ public class RedesController {
 				e.printStackTrace();
 			}
 			
-		}
+		} // fim linux
 		return ping;
 	}
 	
